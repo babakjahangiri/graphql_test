@@ -9,11 +9,8 @@ const schema = buildSchema(`
         email: String
     }
 
-    type Email {
-        email: String
-    }
     type Query{
-                friend: Friend
+            getFriend(id:ID): Friend
     }
 
     input FriendInput{
