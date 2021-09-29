@@ -53,5 +53,15 @@ export const resolvers = {
         );
       });
     },
+    deleteFriend: (root, {id}) => {
+      return new Promise((resolve, reject) => {
+        Friends.deleteOne(
+          { _id: id }, (err) => {
+            if (err) reject(err);
+            else resolve("friend has deleted !");
+          }
+        );
+      });
+    },
   },
 };
