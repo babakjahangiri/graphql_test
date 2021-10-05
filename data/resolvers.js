@@ -1,4 +1,4 @@
-import { Friends } from "./dbConnectors";
+import { Aliens, Friends } from "./dbConnectors";
 // class Friend {
 //   constructor(id, { firstName, lastName, gender, email, contacts }) {
 //     this.id = id;
@@ -13,9 +13,17 @@ import { Friends } from "./dbConnectors";
 // resolver map
 export const resolvers = {
   Query: {
-    getFriend: ({ id }) => {
-      return new Friends(id, friendDatabase[id]);
+    getOneFriend: (root, { id }) => {
+      return new Promise((resolve,reject) => {
+          Friends.findById(id, (err,friend) => {
+            if (err) reject(err)
+            else resolve(friend)
+          })
+      })
     },
+    getAliens :  () => {
+      return Aliens.findAll();
+    }
   },
 
   Mutation: {
